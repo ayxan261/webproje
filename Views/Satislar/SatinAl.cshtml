@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "SatinAl";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model webprojesi.Models.Entity.Sepet
+<div class="modal-header">
+    <h2>Satin Al</h2>
+
+</div>
+
+<div class="container">
+    @using (Html.BeginForm("SatinAl2", "Satislar", FormMethod.Post))
+    {
+    <div class="modal-body">
+        @Html.HiddenFor(x => x.ID)
+        <div class="form-group">
+            Kullanici Adi ve Soyadi:@Html.DisplayFor(x => x.Kullanicilar.AdiSoyadi, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Urun Adi:@Html.DisplayFor(x => x.Urunler.UrunAdi, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Birim Fiyati:@Html.DisplayFor(x => x.BirimFiyati, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Miktari:@Html.DisplayFor(x => x.Miktari, new { @class = "form-control" })
+        </div>
+        <div class="form-group text-center" style="font-size:25px; color:red">
+            Toplam Fiyati:@Html.DisplayFor(x => x.ToplamFiyati, new { @class = "form-control" })
+        </div>
+
+    </div>
+        <div class="modal-footer" style="float:right">
+            <button class="btn btn-success">Satin Al</button>
+            <a href="/Sepet/Index" class="btn btn-dark">Cikis</a>
+        </div>
+    }
+
+</div>
+

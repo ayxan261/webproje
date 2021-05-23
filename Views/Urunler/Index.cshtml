@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@using webprojesi.Models.Entity
+@model List<Urunler>
+
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <div style="width:25%;float:left;">
+                @Html.TextBox("ara", null, new { @class = "form-control", @placehoder="Aranacak urun ve ya barkod"})
+            </div>
+            <div style="float:left">
+                <input type="submit" value="Ara" class="btn btn-info" />
+
+            </div>
+            
+        </div>
+    }
+</div>
+
+<h2>Urun sayfasi</h2>
+
+<table class="table" id="urun">
+    <thead style="background-color:aliceblue">
+        <tr>
+            @*<th>ID</th>
+        <th>Kategori</th>
+        <th>Marka</th>*@
+            <th>Urun adi</th>
+            <th>Barkod No</th>
+            @*<th>Alis fiyati</th>*@
+            <th>Satis Fiyati</th>
+            <th>Miktari</th>
+            @*<th>K.D.V.</th>*@
+            <th>Birim</th>
+            <th>Tarih</th>
+            <th>Aciklama</th>
+            @if (User.IsInRole("A"))
+            {
+                <th>Sil</th>
+                <th>Guncelle</th>
+                <th>Miktar ekle</th>
+            }
+            <th>Sepete ekle</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+            @*<td>@Html.DisplayFor(x => m.ID)</td>
+        @if (m.Kategoriler == null)
+        {
+            <td></td>
+
+        }
+        else
+        {
+            <td>@Html.DisplayFor(x => m.Kategoriler.Kategori)</td>
+        }
+        @if (m.Markalar == null)
+        {
+            <td></td>
+        }
+        else
+        {
+            <td>@Html.DisplayFor(x => m.Markalar.Marka)</td>
+        }*@
+            <td>@Html.DisplayFor(x => m.UrunAdi)</td>
+            <td>@Html.DisplayFor(x => m.BarkodNo)</td>
+            @*<td>@Html.DisplayFor(x => m.AlisFiyati)</td>*@
+            <td>@Html.DisplayFor(x => m.SatisFiyati)</td>
+            <td>@Html.DisplayFor(x => m.Miktari)</td>
+            @*<td>%@Html.DisplayFor(x => m.KDV)</td>*@
+            @if (m.Birimler == null)
+            {
+                <td></td>
+            }
+            else
+            {
+                <td>@Html.DisplayFor(x => m.Birimler.Birim)</td>
+            }
+
+            <td>@Html.DisplayFor(x => m.Tarih)</td>
+            <td>@Html.DisplayFor(x => m.Aciklama)</td>
+            @*<td>@Html.ActionLink("Sil", "SilBilgiGetir", new { id = m.ID }, new { @class = "btn btn-danger" })</td>*@
+            @if (User.IsInRole("A"))
+            {
+                <td><input type="submit" name="btn" value="Sil" class="btn btn-danger btnSil" data-id="@m.ID" /></td>
+                <td>@Html.ActionLink("Guncelle", "GuncelBilgiGetir", new { id = m.ID }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("MiktarEkle", "MiktarEkle", new { id = m.ID }, new { @class = "btn btn-secondary" })</td>
+            }
+            <td>@Html.ActionLink("SepeteEkle", "SepeteEkle", "Sepet", new { id = m.ID }, new { @class = "btn btn-success" })</td>
+
+        </tr>
+
+        }
+    </tbody>
+</table>
+<div class="form-group container">
+    <div style="float:left">
+        @if (User.IsInRole("A"))
+        {
+            <a href="/Urunler/YeniUrun" class="btn btn-success" style="margin-top:10px;">Urun ekle</a>
+        }
+    </div>
+    <div style="float:right">
+        <a href="@Url.Action("ExcelExport","Urunler")" class="btn btn-dark" style="margin-top:10px;">Export to Excel</a>
+    </div>
+
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#urun").on("click", ".btnSil", function () {
+            var btn = $(this);
+            bootbox.confirm(btn.data("id") + "№-lu veri silinsin mi?", function (result) {
+                if (result) {
+                    var id = btn.data("id");
+                    $.ajax({
+                        type: "GET",
+                        url: "/Urunler/Sil/",
+                        data: { id: id },
+                        success: function () {
+                            btn.parent().parent().remove();
+
+                        }
+
+                    });
+                }
+
+            });
+
+        });
+
+    });
+
+</script>
+

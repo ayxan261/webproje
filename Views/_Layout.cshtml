@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+@using webprojesi.ActiveFolder
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+
+    <title>ASP.NET MVC Stok Takip Otomasyonu</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/styledanger.css" rel="stylesheet" />
+    <link href="~/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Stok Takip Otomasyonu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link @Html.ActivePage("Urunler","Index")" href="/Urunler/Index">
+                            Ürünler
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    @if (User.IsInRole("A"))
+                    {
+                        <li class="nav-item">
+
+                            <a class="nav-link  px-lg-4  @Html.ActivePage("Satislar","Index")" href="/Satislar/Index/">Satislar</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link  px-lg-4  @Html.ActivePage("Kategoriler","Index")" href="/Kategoriler/Index/">Kategoriler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-4 @Html.ActivePage("Markalar","Index")" href="/Markalar/Index/">Markalar</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-4 @Html.ActivePage("Birim","Index")" href="/Birim/Index/">Birimler</a>
+                        </li>
+
+                    }
+
+                    @*<li class="nav-item">
+            <a class="nav-link px-lg-4" href="/Kullanici/Logout/">Çıkış</a>
+        </li>*@
+                    @*<li class="nav-item">
+            <a class="nav-link px-lg-4" style="color:ActiveBorder">@User.Identity.Name</a>
+        </li>*@
+
+                    <li class="nav-item">
+                        <div class="dropdown" style="color:white">
+                            <a href="#" class="nav-link px-lg-4 dropdown" data-toggle="dropdown">
+                                @User.Identity.Name
+                                <i class="fa fa-caret-down" style="color:#ccc" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/Kullanici/Guncelle/">Bilgileri Guncelle</a>
+                                <a class="dropdown-item" href="/Kullanici/Logout/">Cikis</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-4" href="/Sepet/Index/">
+                            <i class="fa fa-shopping-basket"></i>
+                            <label>
+                                @{ Html.RenderAction("TotalCount", "Sepet");}
+                            </label>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container" style="margin-top:20px;">
+        <div class="row navbar-static-top">
+            @RenderBody()
+        </div>
+    </div>
+    <footer class="footer text-faded text-center py-xl-5 navbar-fixed-bottom">
+        <div class="container">
+            <div></div>
+            <p class="m-0 table-sm">Copyright &copy; Stok Takip Otomasyonu Web Sitesi</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    @RenderSection("scriptdanger", false)
+    @RenderSection("scripts", false)
+</body>
+
+</html>

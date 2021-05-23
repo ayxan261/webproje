@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "MiktarEkle";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model webprojesi.Models.Entity.Urunler
+<h2>Miktar ekleme sayfasi</h2>
+
+
+
+<div class="container">
+    @using (Html.BeginForm("MiktarEkle", "Urunler", FormMethod.Post))
+    {
+        @Html.HiddenFor(x=>x.ID)
+        <div class="form-group">
+            @Html.LabelFor(x=>x.Miktari)
+            @Html.TextBoxFor(x => x.Miktari, new { @class="form-control" })
+
+        </div>
+        <div>
+            <button class="btn btn-success" style="margin-top:20px;">Miktar ekle</button>
+        </div>
+    }
+</div>

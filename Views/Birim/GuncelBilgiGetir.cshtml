@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "GuncelBilgiGetir";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model webprojesi.Models.Entity.Birimler
+
+
+
+
+<form class="form-group" action="/Birim/Guncelle" method="post">
+
+    <h2>Guncelleme sayfasi</h2>
+    <br />
+    <div class="container">
+
+        @Html.HiddenFor(m => m.ID)
+        <br />
+        <label>Birim adi:</label>
+        @Html.TextBoxFor(m => m.Birim, new { @class = "form-control" })
+        <br />
+        <label>Aciklama:</label>
+        @Html.TextAreaFor(m => m.Aciklama, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-info" style="margin-top:20px;">Kaydet</button>
+    </div>
+</form>
+
+
+

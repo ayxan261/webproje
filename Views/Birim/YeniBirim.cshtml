@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "YeniBirim";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model webprojesi.Models.Entity.Birimler
+<h2>Yeni Birim Ekle</h2>
+
+
+<div class="container">
+    <form class="form-group" action="/Birim/YeniBirim" method="post">
+        <div>
+            <label>Birim Adi:</label>
+            @Html.TextBoxFor(m => m.Birim, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x=>x.Birim,null,new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>Aciklama:</label>
+            @Html.TextBoxFor(m => m.Aciklama, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Aciklama, null, new { @class = "text-danger" })
+        </div>
+        <div>
+            <button class="btn btn-info" style="margin-top:20px;">Yeni Birim ekle</button>
+        </div>
+
+    </form>
+</div>
+
+

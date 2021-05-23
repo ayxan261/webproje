@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "YeniKategori";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model webprojesi.Models.Entity.Kategoriler
+<h2>Yeni Kategori Ekle</h2>
+
+
+<div class="container">
+   
+    <form class="form-group" action="/Kategoriler/YeniKategori" method="post">
+        @Html.AntiForgeryToken()
+        @* AntiForgeryToken sayti guclendirir yeni her hansi sehfeye browserden adres yazaraq gire bilmirsen *@
+        <div>
+            <label>Kategori Adi:</label>
+            @Html.TextBoxFor(m => m.Kategori, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Kategori, null, new { @class = "text-danger" })
+        </div>
+        <div>
+            <label>Aciklama:</label>
+            @Html.TextBoxFor(m => m.Aciklama, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Aciklama, null, new { @class = "text-danger" })
+        </div>
+        <div>
+            <button class="btn btn-info" style="margin-top:20px;">Yeni Kategori ekle</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@using webprojesi.Models.Entity
+@model List<Satislar>
+<h2>Satislar Listesi</h2>
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>ID</td>
+        <td>Kullanici Adi Soyadi</td>
+        <td>Urun Adi</td>
+        <td>Barkod No</td>
+        <td>Birim Fiyati</td>
+        <td>Miktari</td>
+        <td>Toplam Fiyati</td>
+        <td>KDV</td>
+        <td>Birimi</td>
+        <td>Tarih</td>
+        <td>Saat</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@Html.DisplayFor(x => item.ID)</td>
+        <td>@Html.DisplayFor(x => item.Kullanicilar.AdiSoyadi)</td>
+        <td>@Html.DisplayFor(x => item.Urunler.UrunAdi)</td>
+        <td>@Html.DisplayFor(x => item.BarkoNo)</td>
+        <td>@Html.DisplayFor(x => item.BirimFiyati)</td>
+        <td>@Html.DisplayFor(x => item.Miktari)</td>
+        <td>@Html.DisplayFor(x => item.ToplamFiyati)</td>
+        <td>@Html.DisplayFor(x => item.KDV)</td>
+        <td>@Html.DisplayFor(x => item.Urunler.Birimler.Birim)</td>
+        <td>@Html.DisplayFor(x => item.Tarih)</td>
+        <td>@Html.DisplayFor(x=>item.Saat)</td>
+    </tr>
+    }
+</table>
+

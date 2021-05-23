@@ -1,0 +1,26 @@
+﻿@model List<webprojesi.Models.Entity.Markalar>
+@{
+    ViewBag.Title = "Markalar";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>@ViewBag.kategor Kategorisi</h2>
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Marka</th>
+        <th>Aciklama</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.Marka</td>
+        <td>@item.Aciklama</td>
+    </tr>
+
+    }
+</table>
+

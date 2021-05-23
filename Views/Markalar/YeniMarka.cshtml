@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "YeniMarka";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model webprojesi.Models.Entity.Markalar
+<h2>Marka ekleme sayfasi</h2>
+
+
+<div class="container">
+    @using (Html.BeginForm("YeniMarka", "Markalar", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Kategori:</label>
+            @*@Html.DropDownList("KategoriID", (List<SelectListItem>)ViewBag.l, "---Seciniz---", new { @class = "form-control" })*@
+            @Html.DropDownListFor(x => x.KategoriID, (List<SelectListItem>)ViewBag.l, "---Seciniz---", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.KategoriID, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Marka:</label>
+            @Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Marka, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Aciklama:</label>
+            @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Aciklama, null, new { @class = "text-danger" })
+        </div>
+        <div>
+            <button class="btn btn-info" style="margin-top:20px;">Yeni Marka ekle</button>
+        </div>
+    }
+
+</div>
+
+@section scriptdanger{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    }

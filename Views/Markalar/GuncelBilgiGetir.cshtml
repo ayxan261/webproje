@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "GuncelBilgiGetir";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model webprojesi.Models.Entity.Markalar
+<h2>Marka Guncelleme Sayfasi</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Guncelle", "Markalar"))
+    {
+        @Html.HiddenFor(x => x.ID)
+        <div class="form-group">
+            <label>Kategori:</label>
+            @Html.DropDownListFor(x => x.KategoriID, (List<SelectListItem>)ViewBag.l, "Seciniz", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.KategoriID, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Marka:</label>
+            @Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Marka, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Aciklama:</label>
+            @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Aciklama, null, new { @class = "text-danger" })
+        </div>
+        <div>
+            <button class="btn btn-info" style="margin-top:20px;">Kaydet</button>
+        </div>
+    }
+
+</div>
+
+@section scriptdanger{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

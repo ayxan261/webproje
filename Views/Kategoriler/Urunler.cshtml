@@ -1,0 +1,67 @@
+﻿@model List<webprojesi.Models.Entity.Urunler>
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>@ViewBag.kategor Kategorisindeki Urunler</h2>
+
+
+
+<table class="table table-bordered table-striped" >
+    <thead style="background-color:aliceblue">
+        <tr>
+            <th>ID</th>                
+            <th>Marka</th>
+            <th>Urun adi</th>
+            <th>Barkod No</th>
+            <th>Alis fiyati</th>
+            <th>Satis Fiyati</th>
+            <th>Miktari</th>
+            <th>K.D.V.</th>
+            <th>Birim</th>
+            <th>Tarih</th>
+            <th>Aciklama</th>
+           
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => m.ID)</td>
+                    
+                    @if (m.Markalar == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(x => m.Markalar.Marka)</td>
+                    }
+                <td>@Html.DisplayFor(x => m.UrunAdi)</td>
+                <td>@Html.DisplayFor(x => m.BarkodNo)</td>
+                <td>@Html.DisplayFor(x => m.AlisFiyati)</td>
+                <td>@Html.DisplayFor(x => m.SatisFiyati)</td>
+                <td>@Html.DisplayFor(x => m.Miktari)</td>
+                <td>%@Html.DisplayFor(x => m.KDV)</td>
+                @if (m.Birimler == null)
+                {
+                    <td></td>
+                }
+                else
+                {
+                    <td>@Html.DisplayFor(x => m.Birimler.Birim)</td>
+                }
+
+                <td>@Html.DisplayFor(x => m.Tarih)</td>
+                <td>@Html.DisplayFor(x => m.Aciklama)</td>
+                
+               
+            </tr>
+
+        }
+    </tbody>
+</table>
+

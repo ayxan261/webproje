@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "SilBilgiGetir";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model webprojesi.Models.Entity.Kategoriler
+
+<h2>Kategori silme sayfasi</h2>
+
+
+
+<div class="container">
+    @using (Html.BeginForm("Sil", "Kategoriler"))
+    {
+        <div class="form-group">
+            @Html.HiddenFor(x=>x.ID)
+            <label style="font-weight:bold">Kategori:</label>
+            @Html.DisplayFor(x=>x.Kategori, new { @class="form-control" })
+        </div>
+        <div>
+            <label style="font-weight:bold">Aciklama:</label>
+            @Html.DisplayFor(x => x.Aciklama, new { @class = "form-control" })
+        </div>
+        <div>
+            <button class="btn btn-danger" style="margin-top:20px;">Sil</button>
+            <a href="/Kategoriler/Index" style="margin-top:20px;">Kategoriler sayfasi</a>
+            
+        </div>
+    }
+
+</div>
+

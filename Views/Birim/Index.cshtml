@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@using webprojesi.Models.Entity
+@model List<webprojesi.Models.Entity.Birimler>
+
+<table border="1" class="table table-bordered">
+
+    <tr>
+        <th>Birim ID</th>
+        <th>Birim adi</th>
+        <th>Birim tanimi</th>
+        <th>Sil</th>
+        <th>Guncelle</th>
+
+    </tr>
+
+
+    @foreach (var birim in Model)
+    {
+        <tr>
+            <td>@birim.ID</td>
+            <td>@birim.Birim</td>
+            <td>@birim.Aciklama</td>
+            <td><a href="/Birim/SilBilgiGetir/@birim.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Birim/GuncelBilgiGetir/@birim.ID" class="btn btn-warning">Guncelle</a></td>
+        </tr>
+
+    }
+
+</table>
+<a href="/Birim/YeniBirim" class="btn btn-success" style="margin-top:10px;">Birim ekle</a>
+
+

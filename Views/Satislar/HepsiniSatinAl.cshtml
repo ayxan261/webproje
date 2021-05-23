@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "HepsiniSatinAl";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@using webprojesi.Models.Entity
+@model List<Sepet>
+
+<div class="container">
+    @{ 
+        MVCStokTakipEntities db = new MVCStokTakipEntities();
+        var kullanici = User.Identity.Name;
+        var model = db.Kullanicilars.FirstOrDefault(x => x.KullaniciAdi == kullanici);
+        var adsoyad = model.AdiSoyadi;
+    }
+    <h2>Hos geldiniz Sayin <label class="text-danger">@adsoyad</label> bey Satis sayfasina!</h2>
+</div>
+<hr />
+@using (Html.BeginForm("HepsiniSatinAl2", "Satislar", FormMethod.Post, new { @class = "container" }))
+{
+    foreach (var item in Model)
+    {
+        <div class="form-group">
+            <h5>ID:@Html.DisplayFor(x => item.ID)</h5>
+        </div>
+        <div class="form-group">
+            Urun adi:@Html.DisplayFor(x => item.Urunler.UrunAdi)
+        </div>
+        <div class="form-group">
+            Barkod No:@Html.DisplayFor(x => item.Urunler.BarkodNo)
+        </div>
+        <div class="form-group">
+            Miktari:@Html.DisplayFor(x => item.Miktari)
+        </div>
+        <div class="form-group">
+            Birimi:@Html.DisplayFor(x => item.Urunler.Birimler.Birim)
+        </div>
+        <div class="form-group">
+            Fiyati:@Html.DisplayFor(x => item.BirimFiyati)
+        </div>
+        <div class="form-group">
+            <h5>Toplam Fiyati:@Html.DisplayFor(x => item.ToplamFiyati)</h5>
+        </div>
+        <hr />
+
+    }
+    <div class="container">
+        <div class="text-danger text-center"><h5>@ViewBag.mesaj</h5></div>
+        <div class="form-group" style="float:left">
+            <button class="btn btn-success">Onay</button>
+        </div>
+        <div>
+            <a href="/Sepet/Index" class="btn btn-danger" style="float:right">Iptal</a>
+        </div>
+    </div>
+}
+
+
+
